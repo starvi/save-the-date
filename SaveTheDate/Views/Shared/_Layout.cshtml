@@ -1,0 +1,926 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SaveTheDate</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Send+Flowers&display=swap" rel="stylesheet">
+    <link href="~/lib/flip/flip.min.css" rel="stylesheet" />
+    <script src="~/lib/flip/flip.min.js"></script>
+    <style>
+        body {
+            width: 100%;
+            font-family: "Noto Sans", sans-serif;
+            font-size: 20px;
+        }
+        a {
+            text-decoration: none !important;
+        }
+        .logo {
+            margin-left: 16px;
+            width: 216px;
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+        .logo a {
+            font-family: "Fleur De Leah", cursive;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 40px;
+            text-decoration: none !important;
+        }
+        .section {
+            max-height: 100vh;
+            margin: 0 !important;
+        }
+
+        .cover {
+            width: 100%;
+            background: url("../assets/images/banner1.jpg") no-repeat center center; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        .mySlides {
+            width: 100%;
+            max-height: 100vh;
+            object-fit: cover;
+        }
+        .zone {
+            height: 100vh;
+        }
+        .header {
+            width: 100%;
+            height: 60px;
+            display: inline-block;
+            opacity: 50% !important;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            z-index: 9999;
+        }
+        .navbar {
+            display: inline-block;
+            height: 100%;
+            width: calc(100% - 506px);
+            margin-left: 5px;
+        }
+        .navbar a {
+            height: 100%;
+            vertical-align: middle;
+            padding: 0 5px;
+            font-size: 20px;
+        }
+        
+        .navbar a :hover {
+            background-color: white;
+            color:  #e91e63;
+        }
+
+        .info {
+            width: 871px;
+            position: absolute;
+            bottom: 40px;
+            left: calc(50% - 346px);
+            text-align: center;
+            vertical-align: middle;
+            background-image: url(../assets/images/flowers-border-top-left.png), url(../assets/images/flowers-border-top-right.png), url(../assets/images/flowers-border-bottom-right.png), url(../assets/images/flowers-border-bottom-left.png);
+            background-position: top -6px left 0px, top -6px right 0px, bottom -6px right 0px, bottom -6px left 0px;
+            background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+            background-size: 145px;
+            padding: 80px;
+            font-size: 20px;
+        }
+        .info p {
+            margin-bottom: 0;
+        }
+        .info .names {
+            height: 120px;
+            font-size: 80px;
+            font-family: "Fleur De Leah", cursive;
+            display: inline-block;
+        }
+        .info .names .groom {
+            margin: 0;
+            color: white;
+            display: inline-block;
+        }
+        .info .names .bride {
+            margin: 0;
+            display: inline-block;
+        }
+        .info .names #heart {
+            margin: 0;
+            display: inline-block;
+            color: #e91e63 !important;
+            width: 50px;
+        }
+        .info .title {
+            color: #e91e63 !important;
+            font-family: "Send Flowers", "Noto Sans", sans-serif;
+            margin: 0;
+            font-size: xx-large;
+        }
+
+        .tick {
+            width: 400px;
+            margin: auto;
+        }
+
+        .label {
+            display: flex;
+            justify-content: space-around;
+            width: 400px;
+            margin: auto;
+        }
+
+        .label p {
+            margin: 0;
+        }
+
+        #couple {
+            background-color: #FCFCFC;
+        }
+
+        .avatar img {
+            border-radius: 50%;
+            border: 10px white solid;
+            width: 300px;
+            height: 300px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        #couple .title, #timeline .title, #schedule .title, #wishes .title {
+            padding-top: 60px;
+            margin: 0;
+            text-align: center;
+            color: #e91e63 !important;
+            font-family: "Send Flowers", "Noto Sans", sans-serif;
+            margin: 0;
+            font-size: xx-large;
+        }
+
+        .couple {
+            margin-top: 300px;
+        }
+        .couple .groom .avatar {
+            margin-top: -150px;
+            margin-left: 150px;
+        }
+
+        .couple .bride .avatar {
+            margin-top: -150px;
+            margin-left: 150px;
+        }
+
+        .couple {
+            justify-content: center;
+            display: flex;
+        }
+
+        .couple .groom {
+            margin-right: 160px;
+            justify-content: space-around;
+            display: block;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border: 10px white solid;
+            width: 600px;
+        }
+        .couple .bride {
+            margin-left: 160px;
+            justify-content: space-around;
+            display: block;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border: 10px white solid;
+            width: 600px;
+        }
+
+        .note {
+            margin: 30px;
+        }
+        
+        #timeline {
+            height: 400vh;
+            background-color: lightpink;
+        }
+
+        /* The actual timeline (the vertical ruler) */
+        .timeline {
+            position: relative;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* The actual timeline (the vertical ruler) */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: white;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        /* Container around content */
+        .container {
+            padding: 70px 0px;
+            position: relative;
+            background-color: inherit;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        /* The circles on the timeline */
+        .content::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -87px;
+            background-color: white;
+            border: 4px solid #FF9F55;
+            top: 19px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Place the container to the left */
+        .left {
+            left: 0;
+        }
+
+        /* Place the container to the right */
+        .right {
+            /* left: 50%; */
+        }
+
+        /* Add arrows to the left container (pointing right) */
+        .left .content::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: -11px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+
+        /* Add arrows to the right container (pointing left) */
+        .right .content:before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: -11px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+
+        /* Fix the circle for containers on the right side */
+        .right .content::after {
+            left: -87px;
+        }
+
+        /* The actual content */
+        .content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            width: 500px;
+        }
+
+        .image {
+            width: 500px;
+        }
+
+        .image img {
+            max-width: 500px;
+            border-radius: 6px;
+        }
+
+        /* Media queries - Responsive timeline on screens less than 600px wide */
+        @@media screen and (max-width: 600px) {
+            /* Place the timelime to the left */
+            .timeline::after {
+                left: 31px;
+            }
+  
+            /* Full-width containers */
+            .container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                display: flex;
+            }
+  
+            /* Make sure that all arrows are pointing leftwards */
+            .content::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+
+            /* Make sure all circles are at the same spot */
+            .left::after, .right::after {
+                left: 15px;
+            }
+  
+            /* Make all right containers behave like the left ones */
+            .right {
+                left: 0%;
+            }
+        }
+        .calendar {
+            justify-content: center;
+            display: flex;
+        }
+
+        .calendar .save-date {
+            margin-right: 160px;
+            justify-content: space-around;
+            display: block;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border: 10px white solid;
+            width: 770px;
+            height: 770px;
+        }
+        .calendar .date {
+            margin-left: 160px;
+            justify-content: space-around;
+            display: block;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border: 10px white solid;
+            width: 770px;
+            height: 770px;
+        }
+
+        .calendar .date .inside,  .calendar .save-date .inside{
+            margin: 75px;
+        }
+
+        .december {
+            margin: auto;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        #first-week td {
+            width: 93px;
+            color: lightgray;
+        }
+
+        #first-week td:last-child {
+            color: black;
+        }
+
+        #last-week td {
+            color: lightgray;
+        }
+
+        #last-week td:first-child, #last-week td:nth-child(2) {
+            color: black;
+        }
+
+        .wedding {
+            position: relative;
+            color: white !important;
+        }
+
+        .wedding:before {
+            z-index: -1;
+            content: "♥";
+            color: red;
+            font-weight: bold;
+            font-size: 65px;
+            position: absolute;
+            top: -35px;
+            right: 21px;
+        }
+
+        .calendar .date .inside {
+            text-align: center;
+        }
+
+        .calendar .date .inside p {
+            font-weight: bold;
+        }
+
+        #wishes {
+            background-color: lightpink;
+        }
+    </style>
+</head>
+<body>
+    <div class="w3-section section">
+        <div class="header w3-pink">
+            <div class="logo">
+                <a href="#home">Soan ♥ Phượng</a>
+            </div>
+            <div class="navbar">
+                <a href="#home" class="">Trang chủ</a>
+                <a href="#couple" class="">Cặp đôi</a>
+                <a href="#timeline" class="">Câu chuyện tình yêu</a>
+                <a href="#schedule" class="">Lịch cưới</a>
+                <a href="#phote" class="">Ảnh cưới</a>
+            </div>
+        </div>
+        <div class="zone cover" id="home">
+            <div class="info">
+                <div class="names">
+                    <p class="groom">Vì Soan</p>
+                    <p id="heart">♥</p>
+                    <p class="bride">Quàng Phượng</p>
+                </div>
+                <p class="title">Save The Date</p>
+                <p>Lễ thành hôn: 15/12/2024</p>
+                <div class="tick"
+                     data-did-init="handleTickInit2">
+                    <div data-repeat="true"
+                         data-layout="horizontal center fit"
+                         data-transform="preset(d, h, m, s) -> delay">
+                        <div class="tick-group">
+                            <div data-key="value"
+                                 data-repeat="true"
+                                 data-transform="pad(00) -> split -> delay">
+                                <span data-view="flip"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="label">
+                    <p>Ngày</p>
+                    <p>Giờ</p>
+                    <p>Phút</p>
+                    <p>Giây</p>
+                </div>
+                <p>Lễ báo hỷ: 05/01/2025</p>
+                <div class="tick"
+                     data-did-init="handleTickInit3">
+                    <div data-repeat="true"
+                         data-layout="horizontal center fit"
+                         data-transform="preset(d, h, m, s) -> delay">
+                        <div class="tick-group">
+                            <div data-key="value"
+                                 data-repeat="true"
+                                 data-transform="pad(00) -> split -> delay">
+                                <span data-view="flip"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="label">
+                    <p>Ngày</p>
+                    <p>Giờ</p>
+                    <p>Phút</p>
+                    <p>Giây</p>
+                </div>
+            </div>
+        </div>
+        <div class="zone" id="couple">
+            <p class="title">Cặp đôi</p>
+            <div class="couple">
+                <div class="groom">
+                    <div class="avatar">
+                        <img src="~/assets/images/groom.jpg" />
+                    </div>
+                    <div class="note">
+                        <p>Chú Rể</p>
+                        <p>Vì Văn Soan</p>
+                        <p>
+                            Con ông: Vì Văn Anh<br/>
+                            Con bà: Lò Thị Giót
+                        </p>
+                        <p>
+                            Là Lập trình viên, Quản lý dự án CNTT, hiện đang công tác tại công ty CMC Global. Chàng trai trầm tính, hướng nội ít nói thích tham gia các hoạt động xã hội. Châm ngôn sống của anh là "Thay vì kêu ca, thì hãy ngồi xuống và gọi két đi"
+                        </p>
+                    </div>
+                </div>
+                <div class="bride">
+                    <div class="avatar">
+                        <img src="~/assets/images/bride.jpg" />
+                    </div>
+                    <div class="note">
+                        <p>Cô Dâu</p>
+                        <p>Quàng Thị Phượng</p>
+                        <p>
+                            Con ông: Quàng Văn Nguộc<br />
+                            Con bà: Quàng Thị Hường
+                        </p>
+                        <p>
+                            Là Nhân viên kinh doanh, chuyên bán các sản phẩm xe ô tô Mitsubishi. Hiện tại đang công tác tại Công ty Hanoi Auto. Cô gái trẻ trung, thích khám phá những giới hạn của bản thân. Luôn cố gắng hết mình, vì tương lai, gia đình và những người yêu thương
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zone" id="timeline">
+            <p class="title">Câu chuyện tình yêu</p>
+            <div class="timeline">
+                <div class="container left">
+                    <div class="content">
+                        <h2>Bạn có tin vào tình yêu online?</h2>
+                        <p>06/09/2021 - Lần đầu nhắn tin</p>
+                        <p>Bạn có nghĩ rằng, người mà bạn trả lời Story, một ngày nào đó lại là người sẽ đi bên cạnh bạn suốt đời.</p>
+                    </div>
+                    <div class="image w3-animate-right">
+                        <img src="~/assets/images/story-1.jpg" />
+                    </div>
+                </div>
+                <div class="container right">
+                    <div class="image w3-animate-left">
+                        <img src="~/assets/images/story-1.jpg" />
+                    </div>
+                    <div class="content">
+                        <h2>Gặp mặt và tỏ tình</h2>
+                        <p>23/03/2024 - Cuộc gặp gỡ định mệnh</p>
+                        <p>Dù đã quen biết rất lâu và thường xuyên tương tác trên Mạng xã hội, tuy nhiên hai người chưa từng gặp mặt thực sự bao giờ. Vào những ngày cuối tháng 3 năm 2024</p>
+                    </div>
+                </div>
+                <div class="container left">
+                    <div class="content">
+                        <h2>Dạm ngõ</h2>
+                        <p>19/05/2024 - Dạm ngõ</p>
+                        <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+                    </div>
+                    <div class="image w3-animate-right">
+                        <img src="~/assets/images/story-3.jpg" />
+                    </div>
+                </div>
+                <div class="container right">
+                    <div class="image w3-animate-left">
+                        <img src="~/assets/images/story-1.jpg" />
+                    </div>
+                    <div class="content">
+                        <h2>Chuyển xuống Hà Nội</h2>
+                        <p>23/03/2024 - Hành trình mới</p>
+                        <p>Dù đã quen biết rất lâu và thường xuyên tương tác trên Mạng xã hội</p>
+                    </div>
+                </div>
+                <div class="container left">
+                    <div class="content">
+                        <h2>Chuyến du lịch đầu tiên</h2>
+                        <p>15/06/1993 - Sinh nhật đáng nhớ</p>
+                        <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+                    </div>
+                    <div class="image w3-animate-right">
+                        <img src="~/assets/images/story-5.jpg" />
+                    </div>
+                </div>
+                <div class="container right">
+                    <div class="image w3-animate-left">
+                        <img src="~/assets/images/story-6.jpg" />
+                    </div>
+                    <div class="content">
+                        <h2>Chuyến đi thứ 2</h2>
+                        <p>08/10/2024 - 11/11/2024 - Cô Tô 3N2Đ</p>
+                        <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+                    </div>
+                </div>
+                <div class="container left">
+                    <div class="content">
+                        <h2>Lễ Vu quy</h2>
+                        <p>10/11/2024 - Tưng bừng nhà gái</p>
+                        <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+                    </div>
+                    <div class="image w3-animate-right">
+                        <img src="~/assets/images/story-7.jpg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zone" id="schedule">
+            <p class="title">Lịch cưới</p>
+            <div class="calendar">
+                <div class="save-date">
+                    <div class="inside">
+                        <p class="title">Lễ thành hôn</p>
+                        <p>Vì Soan & Quàng Phượng</p>
+                        <p>Lời chúc phúc của bạn chắc chắn sẽ làm đám cưới của chúng tôi thêm hạnh phúc</p>
+                        <a href="#wishes" class="w3-button w3-white w3-border w3-border-red w3-round-large">Gửi lời chúc phúc</a>
+                    </div>
+                </div>
+                <div class="date">
+                    <div class="inside">
+                        <p>Tháng 12</p>
+                        <table class="december">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Thứ 2
+                                    </th>
+                                    <th>
+                                        Thứ 3
+                                    </th>
+                                    <th>
+                                        Thứ 4
+                                    </th>
+                                    <th>
+                                        Thứ 5
+                                    </th>
+                                    <th>
+                                        Thứ 6
+                                    </th>
+                                    <th>
+                                        Thứ 7
+                                    </th>
+                                    <th>
+                                        CN
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="first-week">
+                                    <td>25</td>
+                                    <td>26</td>
+                                    <td>27</td>
+                                    <td>28</td>
+                                    <td>29</td>
+                                    <td>30</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>11</td>
+                                    <td>12</td>
+                                    <td>13</td>
+                                    <td>14</td>
+                                    <td class="wedding" title="Lễ thành hôn - 15/12">
+                                        <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=L%E1%BB%85+Th%C3%A0nh+h%C3%B4n%20V%C3%AC%20Soan%20-%20Qu%C3%A0ng%20Ph%C6%B0%E1%BB%A3ng&dates=20241215T033000Z/20241215T100000Z&details=Chi+ti%E1%BA%BFt:+https://example.com/tickets-43251101208&location=Bản+Chiềng+Cang+-+Xã+Chiềng+Cang+-+Huyện+Sông+Mã+-+Tỉnh+Sơn+La">15</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>16</td>
+                                    <td>17</td>
+                                    <td>18</td>
+                                    <td>19</td>
+                                    <td>20</td>
+                                    <td>21</td>
+                                    <td>22</td>
+                                </tr>
+                                <tr>
+                                    <td>23</td>
+                                    <td>24</td>
+                                    <td>25</td>
+                                    <td>26</td>
+                                    <td>27</td>
+                                    <td>28</td>
+                                    <td>29</td>
+                                </tr>
+                                <tr id="last-week">
+                                    <td>30</td>
+                                    <td>31</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td class="wedding" title="Lễ báo hỷ - 05/01">5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>Lễ thành hôn: 15/12/2024</p>
+                        <div class="tick"
+                             data-did-init="handleTickInit2">
+                            <div data-repeat="true"
+                                 data-layout="horizontal center fit"
+                                 data-transform="preset(d, h, m, s) -> delay">
+                                <div class="tick-group">
+                                    <div data-key="value"
+                                         data-repeat="true"
+                                         data-transform="pad(00) -> split -> delay">
+                                        <span data-view="flip"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="label">
+                            <p>Ngày</p>
+                            <p>Giờ</p>
+                            <p>Phút</p>
+                            <p>Giây</p>
+                        </div>
+                        <p>Lễ báo hỷ: 05/01/2025</p>
+                        <div class="tick"
+                             data-did-init="handleTickInit3">
+                            <div data-repeat="true"
+                                 data-layout="horizontal center fit"
+                                 data-transform="preset(d, h, m, s) -> delay">
+                                <div class="tick-group">
+                                    <div data-key="value"
+                                         data-repeat="true"
+                                         data-transform="pad(00) -> split -> delay">
+                                        <span data-view="flip"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="label">
+                            <p>Ngày</p>
+                            <p>Giờ</p>
+                            <p>Phút</p>
+                            <p>Giây</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zone" id="wishes">
+            <p class="title">Chúc mừng hạnh phúc</p>
+            <div class="calendar">
+                <div class="save-date">
+                    <div class="inside">
+                        <p>Tên bạn</p>
+                        <input name="Name" placeholder="Nhập tên của bạn" />
+                        <p>Lời chúc</p>
+                        <textarea name="Name" placeholder="Nhập tên của bạn"></textarea>
+                        <a href="#wishes" class="w3-button w3-white w3-border w3-border-red w3-round-large">Gửi lời chúc phúc</a>
+                    </div>
+                </div>
+                <div class="date">
+                    <div class="inside">
+                        <p>Tháng 12</p>
+                        <table class="december">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Thứ 2
+                                    </th>
+                                    <th>
+                                        Thứ 3
+                                    </th>
+                                    <th>
+                                        Thứ 4
+                                    </th>
+                                    <th>
+                                        Thứ 5
+                                    </th>
+                                    <th>
+                                        Thứ 6
+                                    </th>
+                                    <th>
+                                        Thứ 7
+                                    </th>
+                                    <th>
+                                        CN
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="first-week">
+                                    <td>25</td>
+                                    <td>26</td>
+                                    <td>27</td>
+                                    <td>28</td>
+                                    <td>29</td>
+                                    <td>30</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>11</td>
+                                    <td>12</td>
+                                    <td>13</td>
+                                    <td>14</td>
+                                    <td class="wedding" title="Lễ thành hôn - 15/12">
+                                        <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=L%E1%BB%85+Th%C3%A0nh+h%C3%B4n%20V%C3%AC%20Soan%20-%20Qu%C3%A0ng%20Ph%C6%B0%E1%BB%A3ng&dates=20241215T033000Z/20241215T100000Z&details=Chi+ti%E1%BA%BFt:+https://example.com/tickets-43251101208&location=Bản+Chiềng+Cang+-+Xã+Chiềng+Cang+-+Huyện+Sông+Mã+-+Tỉnh+Sơn+La">15</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>16</td>
+                                    <td>17</td>
+                                    <td>18</td>
+                                    <td>19</td>
+                                    <td>20</td>
+                                    <td>21</td>
+                                    <td>22</td>
+                                </tr>
+                                <tr>
+                                    <td>23</td>
+                                    <td>24</td>
+                                    <td>25</td>
+                                    <td>26</td>
+                                    <td>27</td>
+                                    <td>28</td>
+                                    <td>29</td>
+                                </tr>
+                                <tr id="last-week">
+                                    <td>30</td>
+                                    <td>31</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td class="wedding" title="Lễ báo hỷ - 05/01">5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>Lễ thành hôn: 15/12/2024</p>
+                        <div class="tick"
+                             data-did-init="handleTickInit2">
+                            <div data-repeat="true"
+                                 data-layout="horizontal center fit"
+                                 data-transform="preset(d, h, m, s) -> delay">
+                                <div class="tick-group">
+                                    <div data-key="value"
+                                         data-repeat="true"
+                                         data-transform="pad(00) -> split -> delay">
+                                        <span data-view="flip"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="label">
+                            <p>Ngày</p>
+                            <p>Giờ</p>
+                            <p>Phút</p>
+                            <p>Giây</p>
+                        </div>
+                        <p>Lễ báo hỷ: 05/01/2025</p>
+                        <div class="tick"
+                             data-did-init="handleTickInit3">
+                            <div data-repeat="true"
+                                 data-layout="horizontal center fit"
+                                 data-transform="preset(d, h, m, s) -> delay">
+                                <div class="tick-group">
+                                    <div data-key="value"
+                                         data-repeat="true"
+                                         data-transform="pad(00) -> split -> delay">
+                                        <span data-view="flip"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="label">
+                            <p>Ngày</p>
+                            <p>Giờ</p>
+                            <p>Phút</p>
+                            <p>Giây</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+    </div>
+
+</body>
+<script>
+    var bit = true;
+    beat();
+
+    function beat() {
+      var heart = document.getElementById("heart");
+        heart.style.fontSize = bit ? '70px' : '80px';
+      bit = !bit;
+      setTimeout(beat, 500);
+    }
+
+    function handleTickInit2(tick) {
+
+        Tick.count.down('2024-12-15 10:30:00').onupdate = function (value) {
+            tick.value = value;
+        };
+    }
+    function handleTickInit3(tick) {
+
+        Tick.count.down('2025-01-05 10:30:00').onupdate = function (value) {
+            tick.value = value;
+        };
+    }
+</script>
+</html>
