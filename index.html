@@ -40,7 +40,7 @@
 
         .cover {
             width: 100%;
-            background: url("Assets/Images/banner1.JPG") no-repeat center center; 
+            background: url("Assets/Images/banner.jpg") no-repeat center center; 
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -83,10 +83,10 @@
         }
 
         .info {
-            width: 871px;
+            width: 870px;
             position: absolute;
             bottom: 40px;
-            left: calc(50% - 346px);
+            left: calc(50% - 435px);
             text-align: center;
             vertical-align: middle;
             background-image: url(Assets/Images/flowers-border-top-left.png), url(Assets/Images/flowers-border-top-right.png), url(Assets/Images/flowers-border-bottom-right.png), url(Assets/Images/flowers-border-bottom-left.png);
@@ -184,7 +184,7 @@
         }
 
         .couple .groom {
-            margin-right: 160px;
+            margin-right: 120px;
             justify-content: space-around;
             display: block;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -192,7 +192,7 @@
             width: 600px;
         }
         .couple .bride {
-            margin-left: 160px;
+            margin-left: 120px;
             justify-content: space-around;
             display: block;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -345,13 +345,14 @@
                 left: 0%;
             }
         }
-        .calendar {
+        .calendar, .wishes-content {
             justify-content: center;
             display: flex;
         }
 
-        .calendar .save-date {
-            margin-right: 160px;
+        .calendar .save-date, .wishes-content .box {
+			background-color: white;
+            margin-right: 70px;
             justify-content: space-around;
             display: block;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -359,8 +360,8 @@
             width: 770px;
             height: 770px;
         }
-        .calendar .date {
-            margin-left: 160px;
+        .calendar .date, .wishes-content .gifts {
+            margin-left: 70px;
             justify-content: space-around;
             display: block;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -369,7 +370,7 @@
             height: 770px;
         }
 
-        .calendar .date .inside,  .calendar .save-date .inside{
+        .calendar .date .inside, .calendar .save-date .inside, .wishes-content .box .inside, .wishes-content .gifs .inside{
             margin: 75px;
         }
 
@@ -413,7 +414,7 @@
             right: 21px;
         }
 
-        .calendar .date .inside {
+        .calendar .date .inside{
             text-align: center;
         }
 
@@ -497,7 +498,7 @@
             <div class="couple">
                 <div class="groom">
                     <div class="avatar">
-                        <img src="Assets/Images/groom.JPG" />
+                        <img src="Assets/Images/groom.jpg" />
                     </div>
                     <div class="note">
                         <p>Chú Rể</p>
@@ -513,7 +514,7 @@
                 </div>
                 <div class="bride">
                     <div class="avatar">
-                        <img src="Assets/Images/bride.JPG" />
+                        <img src="Assets/Images/bride.jpg" />
                     </div>
                     <div class="note">
                         <p>Cô Dâu</p>
@@ -683,7 +684,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <p>Lễ thành hôn: 15/12/2024</p>
+                        <p>Lễ thành hôn: 10h30 - 15/12/2024</p>
                         <div class="tick"
                              data-did-init="handleTickInit2">
                             <div data-repeat="true"
@@ -704,7 +705,7 @@
                             <p>Phút</p>
                             <p>Giây</p>
                         </div>
-                        <p>Lễ báo hỷ: 05/01/2025</p>
+                        <p>Lễ báo hỷ: 10h45 - 05/01/2025</p>
                         <div class="tick"
                              data-did-init="handleTickInit3">
                             <div data-repeat="true"
@@ -731,17 +732,17 @@
         </div>
         <div class="zone" id="wishes">
             <p class="title">Chúc mừng hạnh phúc</p>
-            <div class="calendar">
-                <div class="save-date">
+            <div class="wishes-content">
+                <div class="box">
                     <div class="inside">
                         <p>Tên bạn</p>
                         <input name="Name" placeholder="Nhập tên của bạn" />
                         <p>Lời chúc</p>
-                        <textarea name="Name" placeholder="Nhập tên của bạn"></textarea>
+                        <textarea name="Name" placeholder="Nhập lời chúc"></textarea>
                         <a href="#wishes" class="w3-button w3-white w3-border w3-border-red w3-round-large">Gửi lời chúc phúc</a>
                     </div>
                 </div>
-                <div class="date">
+                <div class="gifts">
                     <div class="inside">
                         <p>Tháng 12</p>
                         <table class="december">
@@ -829,7 +830,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <p>Lễ thành hôn: 15/12/2024</p>
+                        <p>Lễ thành hôn: 10h30 - 15/12/2024</p>
                         <div class="tick"
                              data-did-init="handleTickInit2">
                             <div data-repeat="true"
@@ -850,7 +851,7 @@
                             <p>Phút</p>
                             <p>Giây</p>
                         </div>
-                        <p>Lễ báo hỷ: 05/01/2025</p>
+                        <p>Lễ báo hỷ: 10h45 - 05/01/2025</p>
                         <div class="tick"
                              data-did-init="handleTickInit3">
                             <div data-repeat="true"
@@ -897,7 +898,7 @@
     }
     function handleTickInit3(tick) {
 
-        Tick.count.down('2025-01-05 10:30:00').onupdate = function (value) {
+        Tick.count.down('2025-01-05 10:45:00').onupdate = function (value) {
             tick.value = value;
         };
     }
